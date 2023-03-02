@@ -1,5 +1,6 @@
 import './App.css';
 import {useState} from "react";
+import {TIMEOUT} from "dns";
 
 function App() {
     const [cardDeck, setCardDeck] = useState(shuffleDeck(StandardDeck()));
@@ -74,6 +75,64 @@ class Card {
     }
 }
 
+function heroesCard(xOffset: number, yOffset: number) : Card {
+    const cardWidth = 186;
+    const cardHeight = 258;
+    const cardScale = 1150;
+    return new Card('./cards/cartographers/heroes_play_cards_final.jpeg', {
+            "borderRadius": "5px",
+            "float": "left",
+            "width": `${cardWidth}px`,
+            "height": `${cardHeight}px`,
+            "background": `url('./cards/cartographers/heroes_play_cards_final.jpeg') -${xOffset}px -${yOffset}px / ${cardScale}px`,
+        }
+    );
+}
+
+function TimberGrove() :Card {
+    return heroesCard(2, 18);
+}
+
+function FrontierDwelling() :Card {
+    return heroesCard(191, 18);
+}
+
+function WoodlandCrossroads() :Card {
+    return heroesCard(380, 18);
+}
+
+function MangrooveSwamp() :Card {
+    return heroesCard(572, 15);
+}
+
+function Pasture() :Card {
+    return heroesCard(765, 12);
+}
+
+function CoastalEncampment() :Card {
+    return heroesCard(960, 2);
+}
+
+function WildwoodGarden() : Card {
+    return heroesCard(85,280);
+}
+
+function Settlement() : Card {
+    return heroesCard(280, 280);
+}
+
+function KethrasGates() : Card {
+    return heroesCard(475, 280);
+}
+
+function Lagoon() : Card {
+    return heroesCard(665, 275);
+}
+
+function HillsideTerrace() : Card {
+    return heroesCard(860, 270);
+}
+
 function CartographersFullDeck(): Card[] {
     const numRows = 4;
     const numCols = 6;
@@ -102,7 +161,12 @@ function CartographersFullDeck(): Card[] {
 
 function CartographersNoMonstersDeck(): Card[] {
     let deck = CartographersFullDeck();
-    return deck.slice(8);
+    deck = deck.slice(8);
+    deck.push(
+        TimberGrove(), FrontierDwelling(), WoodlandCrossroads(), MangrooveSwamp(), CoastalEncampment(), Pasture(),
+        WildwoodGarden(), Settlement(), KethrasGates(), Lagoon(), HillsideTerrace()
+    );
+    return deck
 }
 
 function StandardDeck(): Card[] {
@@ -184,7 +248,7 @@ function CardGrid(props: CardProps) {
     let cardsToDisplay = props.cards.slice(0, props.current_index);
     cardsToDisplay.reverse();
     const history = cardsToDisplay.slice(1);
-    let rows = chunkArray(history, 5);
+    let rows = chunkArray(history, 1);
     const cardsRemaining = props.cards.length - props.current_index;
     let deckClicker = () => {
     };
