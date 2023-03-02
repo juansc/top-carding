@@ -78,8 +78,10 @@ function CartographersFullDeck(): Card[] {
     const numRows = 4;
     const numCols = 6;
     let cards = [];
-    const cardHeight = 172;
-    const cardWidth = 124;
+    const factor = 1;
+    const cardHeight = 258 * factor;
+    const cardWidth = 186 * factor;
+    const cardScale = 1119 * factor;
     for (let row = 0; row < numRows; row++) {
         for (let col = 0; col < numCols; col++) {
             const xOffset = col * -cardWidth;
@@ -89,7 +91,7 @@ function CartographersFullDeck(): Card[] {
                     "float": "left",
                     "width": `${cardWidth}px`,
                     "height": `${cardHeight}px`,
-                    "background": `url('./cards/cartographers/play_card_sheet.jpeg') ${xOffset}px ${yOffset}px / 743px`,
+                    "background": `url('./cards/cartographers/play_card_sheet.jpeg') ${xOffset}px ${yOffset}px / ${cardScale}px`,
                 }
             ))
         }
@@ -189,9 +191,14 @@ function CardGrid(props: CardProps) {
     if (cardsRemaining !== 0) {
         deckClicker = props.callback;
     }
+    const myStyle: Record<string, any> = {
+        "display": "flex",
+        "flexDirection": "row",
+        "justifyContent": "center",
+    };
     return (
         <div>
-            <div style={{"overflow": "hidden"}}>
+            <div style={myStyle}>
                 <figure style={{"float": "left"}}>
                     <p><img className={"card"} src={"./cards/card_back.png"} alt={"card back"} onClick={deckClicker}/>
                         <figcaption>{cardsRemaining}</figcaption>
@@ -235,3 +242,9 @@ function chunkArray<T>(list: Array<T>, n: number): Array<Array<T>> {
 }
 
 export default App;
+
+/*
+display: flex;
+flex-direction: row;
+justify-content: center;
+ */

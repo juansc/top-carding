@@ -19,9 +19,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  text-align: center;
 }
 
 .App-link {
@@ -29,11 +29,12 @@
 }
 
 .card {
-  width: 120px;
-  height: 180px;
+  width: 180px;
+  height: 270px;
 }
 
 .top-card {
   box-shadow: 0 0 5px 5px #ffffff;
   margin-top: 50px;
 }
+
